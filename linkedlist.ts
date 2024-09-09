@@ -35,6 +35,22 @@ namespace LinkedList {
       this.size++;
     }
 
+    append(value: T): void {
+      const node = new Node(value);
+      if (this.isEmpty()) {
+        this.head = node;
+      } else {
+        let prev = this.head;
+        while (prev?.next) {
+          prev = prev.next;
+        }
+        if (prev) {
+          prev.next = node;
+        }
+      }
+      this.size++;
+    }
+
     print() {
       if (this.isEmpty()) {
         console.log("List is empty");
@@ -45,7 +61,7 @@ namespace LinkedList {
           listValues += `${current.value}`;
           current = current.next;
         }
-        console.log(listValues)
+        console.log(listValues);
       }
     }
   }
