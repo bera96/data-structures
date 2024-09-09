@@ -1,15 +1,15 @@
 namespace LinkedList {
   export class Node<T> {
     value: T;
-    next: null;
+    next: Node<T> | null;
     constructor(value: T) {
       this.value = value;
       this.next = null;
     }
   }
 
-  export class LinkedList {
-    head: null;
+  export class LinkedList<T> {
+    head: Node<T> | null;
     size: number;
     constructor() {
       this.head = null;
@@ -19,8 +19,20 @@ namespace LinkedList {
     isEmpty(): boolean {
       return this.size === 0;
     }
+
     getSize(): number {
       return this.size;
+    }
+
+    prepend(value: T): void {
+      const node = new Node(value);
+      if (this.isEmpty()) {
+        this.head = node;
+      } else {
+        node.next = this.head;
+        this.head = node;
+      }
+      this.size++;
     }
   }
 }
