@@ -34,5 +34,19 @@ namespace LinkedList {
       }
       this.size++;
     }
+
+    print() {
+      if (this.isEmpty()) {
+        console.log("List is empty");
+      } else {
+        let current = this.head;
+        let listValues = "";
+        while (current) {
+          listValues += `${current.value}`;
+          current = current.next;
+        }
+        console.log(listValues)
+      }
+    }
   }
 }
