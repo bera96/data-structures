@@ -73,6 +73,32 @@ namespace LinkedList {
       }
     }
 
+    remove(index: number) {
+      if (index < 0 || index >= this.size) {
+        return null;
+      }
+      let removedNode: Node<T> | null;
+      if (index === 0) {
+        removedNode = this.head;
+        if (this.head) {
+          this.head = this.head?.next;
+        }
+      } else {
+        let prev = this.head;
+        for (let i = 0; i < index - 1; i++) {
+          if (prev) {
+            prev = prev?.next;
+          }
+        }
+        if (prev && prev.next) {
+          removedNode = prev?.next;
+          prev.next = removedNode?.next;
+        }
+      }
+      this.size--;
+      return removedNode!.value;
+    }
+
     print() {
       if (this.isEmpty()) {
         console.log("List is empty");
